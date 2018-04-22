@@ -1,0 +1,60 @@
+﻿@model QuestRoomMVC.Models.QuestsListViewModel
+@{
+    ViewBag.Title = "QuestRoom";
+}
+
+<img src="~/Media/headerimg.jpg" class="img-responsive">
+
+<form method="get">
+    <div class="form-inline col-md-offset-1" style="margin-top: 20px">
+        <label class="control-label">Count of players: </label>
+        @Html.DropDownList("players", Model.Players as SelectList, htmlAttributes: new { @class = "form-control" })
+
+        <label class="control-label">Quest duration: </label>
+        @Html.DropDownList("duration", Model.Duration as SelectList, htmlAttributes: new { @class = "form-control" })
+
+        <label class="control-label">Quest price: </label>
+        @Html.DropDownList("price", Model.Price as SelectList, htmlAttributes: new { @class = "form-control" })
+
+        <input type="submit" value="Filter" class="btn btn-primary" />
+    </div>
+</form>
+
+<!-- Modal window-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+</div>
+<!--End modal-->
+
+<div class="col-md-8 col-md-offset-2" style="margin-top: 20px">
+    <table class="table">
+        <tr>
+            <th>Quest name</th>
+            <th>Duration</th>
+            <th>Players limit</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Quests)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlayersLimit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.ActionLink("Reserv", "Reserv", new { id = item.Id }) |
+                    <button class="btn btn-link link" style="" data-link="/Home/Info/@item.Id">Details</button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
