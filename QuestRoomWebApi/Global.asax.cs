@@ -1,4 +1,8 @@
-﻿using System;
+﻿using BLL.Infrastructure;
+using Ninject;
+using Ninject.Modules;
+using QuestRoomWebApi.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +22,11 @@ namespace QuestRoomWebApi
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            BLL.Infrastructure.AutoMapperConfig.Initialize();
+
+            //for binding unit of work
+            //NinjectModule serviceModule = new ConnectionModule("DefaultConnection");
         }
     }
 }

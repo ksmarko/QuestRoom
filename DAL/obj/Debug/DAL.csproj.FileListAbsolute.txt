@@ -31,3 +31,14 @@ C:\Users\HOME\Documents\Visual Studio 2017\Projects\Arch_4lab\DAL\obj\Debug\DAL.
 C:\Users\HOME\Documents\Visual Studio 2017\Projects\Arch_4lab\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 C:\Users\HOME\Documents\Visual Studio 2017\Projects\Arch_4lab\DAL\obj\Debug\DAL.dll
 C:\Users\HOME\Documents\Visual Studio 2017\Projects\Arch_4lab\DAL\obj\Debug\DAL.pdb
+C:\Users\HOME\source\repos\Arch_4lab\DAL\bin\Debug\DAL.dll.config
+C:\Users\HOME\source\repos\Arch_4lab\DAL\bin\Debug\DAL.dll
+C:\Users\HOME\source\repos\Arch_4lab\DAL\bin\Debug\DAL.pdb
+C:\Users\HOME\source\repos\Arch_4lab\DAL\bin\Debug\EntityFramework.dll
+C:\Users\HOME\source\repos\Arch_4lab\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\HOME\source\repos\Arch_4lab\DAL\bin\Debug\EntityFramework.xml
+C:\Users\HOME\source\repos\Arch_4lab\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\HOME\source\repos\Arch_4lab\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\HOME\source\repos\Arch_4lab\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\HOME\source\repos\Arch_4lab\DAL\obj\Debug\DAL.dll
+C:\Users\HOME\source\repos\Arch_4lab\DAL\obj\Debug\DAL.pdb
