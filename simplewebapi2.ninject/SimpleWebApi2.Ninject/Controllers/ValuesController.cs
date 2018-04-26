@@ -27,5 +27,33 @@ namespace SimpleWebApi2.Ninject.Controllers
         {
             return Mapper.Map<QuestDTO, Quest>(questService.Find(id));
         }
+
+        public IEnumerable<Quest> Get(int? players, int? duration, int? price)
+        {
+            IEnumerable<QuestDTO> quests = questService.GetAll();
+            if (players != null)
+            {
+                quests = quests.Where(x => x.PlayersLimit <= players);
+            }
+            if (duration != null)
+            {
+                quests = quests.Where(x => x.Duration <= duration);
+            }
+            if (price != null)
+            {
+                quests = quests.Where(x => x.Price <= price);
+            }
+
+            //QuestsListViewModel result = new QuestsListViewModel
+            //{
+            //    Quests = quests.ToList(),
+            //    Players = new SelectList(questService.GetAll().Select(x => x.PlayersLimit).Distinct().ToList()),
+            //    Duration = new SelectList(questService.GetAll().Select(x => x.Duration).Distinct().ToList()),
+            //    Price = new SelectList(questService.GetAll().Select(x => x.Price).Distinct().Where(x => x % 100 == 0).ToList())
+            //};
+
+            //return View(result);
+            return Mapper.Map<IEnumerable<QuestDTO>, IEnumerable<Quest>>(quests);
+        }
     }
 }
