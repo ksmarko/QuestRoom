@@ -7,32 +7,38 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/Scripts/jquery-1.10.2.min")
-    @Scripts.Render("~/Scripts/bootstrap.min")
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+
+    @Scripts.Render("~/Scripts/bootstrap.min.js")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
 
 
-    <link rel="stylesheet" href="~/Scripts/bootstrap.min" />
+    @RenderSection("Scripts", required: false)
 </head>
 
 <body>
-
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("Scripts", required: false)
-
     @RenderBody()
-
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(
             $(".link").click(function () {
                 var btn = $(this);
                 $.get(btn.data("link"), function (data) {
                     $("#myModal").html(data);
                     $("#myModal").modal();
-                })
+                });
+            }),
+            SetCalendar()
+        )
+
+        function SetCalendar() {
+            $("#butt").click(function () {
+                alert("sevcsv");
             });
-        });
+        }
     </script>
 </body>
 </html>

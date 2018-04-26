@@ -1,10 +1,28 @@
-﻿<div class="col-md-8 col-md-offset-2" style="margin-top: 20px" id="tableBlock"></div>
+﻿
+<form method="get">
+    <div class="form-inline col-md-offset-1" style="margin-top: 20px">
+        <label class="control-label">Count of players: </label>
+        @*@Html.DropDownList("players", Model.Players as SelectList, htmlAttributes: new { @class = "form-control" })*@
+        <label class="control-label">Quest duration: </label>
+        @*@Html.DropDownList("duration", Model.Duration as SelectList, htmlAttributes: new { @class = "form-control" })*@
+        <label class="control-label">Quest price: </label>
+        @*@Html.DropDownList("price", Model.Price as SelectList, htmlAttributes: new { @class = "form-control" })*@
+        <input type="submit" value="Filter" class="btn btn-primary" />
+    </div>
+</form>
+
+<div class="col-md-8 col-md-offset-2" style="margin-top: 20px" id="tableBlock"></div>
+
+<!-- Modal window-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+</div>
+<!--End modal-->
 
 <script type="text/javascript">
     $(document).ready(function () {
         GetAllQuests();
     });
-    // Получение всех книг по ajax-запросу
+    
     function GetAllQuests() {
 
         $.ajax({
@@ -20,6 +38,45 @@
         });
     }
 
+    function ShowModal(data) {
+
+        var code = "";
+        code += "<div class='modal-dialog' role='document'>";
+        code += "<div class='modal-content'>";
+        code += "<div class='modal-header'>";
+        code += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
+        code += "<h4 class='modal-title' id='content'><strong>" + data.Name + "</strong></h4></div>";
+        code += "<div class='modal-body'> <dl class='dl-horizontal'>";
+        code += "<dt> PlayersLimit </dt> <dd>" + data.PlayersLimit + "</dd > <dt> Price </dt> <dd>" + data.Price + " </dd > ";
+        code += "<dt> Duration </dt>  <dd> " + data.Duration + " </dd>  <dt> Description </dt> <dd> " + data.Description + " </dd>";
+        code += "</dl> </div>";
+        code += "<div class='modal-footer'> <button type='button' class='btn btn-primary' data-dismiss='modal'>Close</button>";
+        code += "</div> </div> </div>";
+
+        $("#myModal").html(code);
+        $("#myModal").modal();
+    }
+
+    function ShowReserv(data) {
+        var code = "";
+        code += "<div class='modal-dialog' role='document'>";
+        code += "<div class='modal-content'>";
+        code += "<div class='modal-header'>";
+        code += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
+        code += "<h4 class='modal-title' id='content'><strong> Reservation window for " + data.Name + "</strong></h4></div>";
+        code += "<div class='modal-body'>";
+        //code += "<div class='col-xs-5 date'><div class='input-group input-append date' id='datePicker'>";
+        //code += "<input type='text' class='form-control' name='date' />";
+        //code += "<span class='input-group-addon add-on'><span class='glyphicon glyphicon-calendar'></span></span>";
+        //code += "</div></div>";
+        code += "</div>";
+        code += "<div class='modal-footer'> <button type='button' class='btn btn-primary' data-dismiss='modal'>Close</button>";
+        code += "</div> </div> </div>";
+
+        $("#myModal").html(code);
+        $("#myModal").modal();
+    }
+
     // вывод полученных данных на экран
     function WriteResponse(quests) {
         var strResult = "<table class=\"table\"";
@@ -32,7 +89,8 @@
         $.each(quests, function (index, quest) {
             strResult += "<tr><td>" + quest.Id + "</td><td> " + quest.Name + "</td><td>" +
                 quest.Duration + "</td><td>" + quest.PlayersLimit + "</td><td>" + quest.Price +
-                "</td><td><a id='editItem' style='cursor: pointer' data-item='" + quest.Id + "' onclick='GetBook(" + quest.Id + ");' >Info</a></td>";
+                "</td><td><a style='cursor: pointer' onclick='GetBook(" + quest.Id + ");' >Info</a> | " +
+                " <a style='cursor: pointer' onclick='Reserv(" + quest.Id + ");' >Reserv</a></td > ";
         });
         strResult += "</table>";
         $("#tableBlock").html(strResult);
@@ -45,7 +103,21 @@
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                alert(data.Name);
+                ShowModal(data);
+            },
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            }
+        });
+    }
+
+    function Reserv(id) {
+        $.ajax({
+            url: '/api/values/' + id,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                ShowReserv(data);
             },
             error: function (x, y, z) {
                 alert(x + '\n' + y + '\n' + z);
