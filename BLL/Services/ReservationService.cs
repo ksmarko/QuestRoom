@@ -54,6 +54,9 @@ namespace BLL.Services
 
         public void Add(ReservDTO entity)
         {
+            if (entity == null || entity.Quest == null)
+                throw new ArgumentNullException();
+
             Database.Reserves.Create(new Reserv
             {
                 Quest = Database.Quests.Get(entity.Quest.Id),
