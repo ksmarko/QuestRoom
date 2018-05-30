@@ -19,7 +19,7 @@ namespace QuestRoomApp
 
             InitializeComponent();
             this.Text = $"Reservation for quest \"{quest.Name}\"";
-            SetTimeSections(Form1.instance.lstQuests.SelectedIndex + 1, DateTime.Now);
+            SetTimeSections(quest.Id, DateTime.Now);
         }
 
         private void btnConfirmReserv_Click(object sender, EventArgs e)
@@ -57,7 +57,7 @@ namespace QuestRoomApp
 
         private void clndrDateSelector_DateSelected(object sender, DateRangeEventArgs e)
         {
-            SetTimeSections(Form1.instance.lstQuests.SelectedIndex + 1, (sender as MonthCalendar).SelectionRange.Start);
+            SetTimeSections(quest.Id, (sender as MonthCalendar).SelectionRange.Start);
         }
 
         private void SetTimeSections(int questId, DateTime dateTime)

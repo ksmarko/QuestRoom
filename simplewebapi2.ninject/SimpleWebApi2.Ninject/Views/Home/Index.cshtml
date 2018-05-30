@@ -1,15 +1,15 @@
 ﻿
-<form method="get">
+@*<form method="get">
     <div class="form-inline col-md-offset-1" style="margin-top: 20px">
         <label class="control-label">Count of players: </label>
-        @*@Html.DropDownList("players", Model.Players as SelectList, htmlAttributes: new { @class = "form-control" })*@
+        @Html.DropDownList("players", Model.Players as SelectList, htmlAttributes: new { @class = "form-control" })
         <label class="control-label">Quest duration: </label>
-        @*@Html.DropDownList("duration", Model.Duration as SelectList, htmlAttributes: new { @class = "form-control" })*@
+        @Html.DropDownList("duration", Model.Duration as SelectList, htmlAttributes: new { @class = "form-control" })
         <label class="control-label">Quest price: </label>
-        @*@Html.DropDownList("price", Model.Price as SelectList, htmlAttributes: new { @class = "form-control" })*@
+        @Html.DropDownList("price", Model.Price as SelectList, htmlAttributes: new { @class = "form-control" })
         <input type="submit" value="Filter" class="btn btn-primary" />
     </div>
-</form>
+</form>*@
 
 <div class="col-md-8 col-md-offset-2" style="margin-top: 20px" id="tableBlock"></div>
 
@@ -26,7 +26,7 @@
     function GetAllQuests() {
 
         $.ajax({
-            url: '/api/values',
+            url: '/api/quests',
             type: 'GET',
             dataType: 'json',
             success: function (data) {
@@ -57,18 +57,14 @@
         $("#myModal").modal();
     }
 
-    function ShowReserv(data) {
+    function ShowReserv(/*data*/) {
         var code = "";
         code += "<div class='modal-dialog' role='document'>";
         code += "<div class='modal-content'>";
         code += "<div class='modal-header'>";
         code += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
-        code += "<h4 class='modal-title' id='content'><strong> Reservation window for " + data.Name + "</strong></h4></div>";
+        code += "<h4 class='modal-title' id='content'><strong> Reservation window for " /*+ data.Name*/ + "</strong></h4></div>";
         code += "<div class='modal-body'>";
-        //code += "<div class='col-xs-5 date'><div class='input-group input-append date' id='datePicker'>";
-        //code += "<input type='text' class='form-control' name='date' />";
-        //code += "<span class='input-group-addon add-on'><span class='glyphicon glyphicon-calendar'></span></span>";
-        //code += "</div></div>";
         code += "</div>";
         code += "<div class='modal-footer'> <button type='button' class='btn btn-primary' data-dismiss='modal'>Close</button>";
         code += "</div> </div> </div>";
@@ -99,7 +95,7 @@
 
     function GetBook(id) {
         $.ajax({
-            url: '/api/values/' + id,
+            url: '/api/quests/' + id,
             type: 'GET',
             dataType: 'json',
             success: function (data) {
@@ -112,16 +108,16 @@
     }
 
     function Reserv(id) {
-        $.ajax({
-            url: '/api/values/' + id,
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                ShowReserv(data);
-            },
-            error: function (x, y, z) {
-                alert(x + '\n' + y + '\n' + z);
-            }
-        });
+        //$.ajax({
+        //    url: '/api/quests/reserv' + id,
+        //    type: 'GET',
+        //    dataType: 'json',
+        //    success: function (data) {
+                ShowReserv(/*data*/);
+        //    },
+        //    error: function (data) {
+        //        console.log(data);
+        //    }
+        //});
     }
 </script>
