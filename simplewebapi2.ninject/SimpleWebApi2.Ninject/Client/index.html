@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>QuestRoom</title>
+    <link rel="stylesheet" type="text/css" href="/Client/Files/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/Client/Files/Site.css" />
+    <script type="text/javascript" src="/Client/Files/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/Client/Files/bootstrap.js"></script>
+    <script type="text/javascript" src="/Client/Files/modernizr-2.6.2.js"></script>
+    <script type="text/javascript" src="/Client/Files/respond.min.js"></script>
+    <script type="text/javascript" src="/Client/Files/domain.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+            <div class="col-md-8 col-md-offset-2" style="margin-top: 20px" id="tableBlock"></div>
+        <!-- Modal window-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        </div>
+        <!--End modal window-->
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            GetAllQuests();
+        });
+    </script>
+</body>
+</html>

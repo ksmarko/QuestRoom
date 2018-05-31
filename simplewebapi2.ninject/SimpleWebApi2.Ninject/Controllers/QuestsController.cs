@@ -38,6 +38,9 @@ namespace SimpleWebApi2.Ninject.Controllers
         [Route("api/quests/reserv")]
         public IHttpActionResult Reserv(ReservModel model)
         {
+            if (!ModelState.IsValid)
+                return BadRequest("Invalid data");
+
             var quest = questService.GetAll().Where(x => x.Id == model.QuestId).FirstOrDefault();
             double cost = quest.Price;
 

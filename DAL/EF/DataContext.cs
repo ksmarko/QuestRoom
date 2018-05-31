@@ -21,7 +21,7 @@ namespace DAL.EF
         public DataContext(string connectionString) : base(connectionString) { }
     }
 
-    public class QuestDbInitializer : DropCreateDatabaseAlways<DataContext>
+    public class QuestDbInitializer : DropCreateDatabaseIfModelChanges<DataContext>
     {
         protected override void Seed(DataContext db)
         {

@@ -83,7 +83,7 @@ namespace BLL.Services
                 "ANNNNA"
             };
 
-            return codes.Contains(code) ? true : false;
+            return codes.Contains(code.ToUpper()) ? true : false;
         }
     }
 }
